@@ -57,6 +57,14 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Jump"",
+                    ""type"": ""Button"",
+                    ""id"": ""5f759834-69da-4c48-a37d-97efb14d2a4d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -140,7 +148,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""8b28b913-4ac0-46d5-b5ea-afb3e226a8eb"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""path"": ""<Gamepad>/buttonEast"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -191,6 +199,17 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                     ""action"": ""SwitchWeaponLess"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ac36bd34-894f-40fe-9356-2ad3d3589a0a"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -204,6 +223,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         m_player_Shoot = m_player.FindAction("Shoot", throwIfNotFound: true);
         m_player_SwitchWeaponPlus = m_player.FindAction("SwitchWeaponPlus", throwIfNotFound: true);
         m_player_SwitchWeaponLess = m_player.FindAction("SwitchWeaponLess", throwIfNotFound: true);
+        m_player_Jump = m_player.FindAction("Jump", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -258,6 +278,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
     private readonly InputAction m_player_Shoot;
     private readonly InputAction m_player_SwitchWeaponPlus;
     private readonly InputAction m_player_SwitchWeaponLess;
+    private readonly InputAction m_player_Jump;
     public struct PlayerActions
     {
         private @PlayerControls m_Wrapper;
@@ -267,6 +288,7 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         public InputAction @Shoot => m_Wrapper.m_player_Shoot;
         public InputAction @SwitchWeaponPlus => m_Wrapper.m_player_SwitchWeaponPlus;
         public InputAction @SwitchWeaponLess => m_Wrapper.m_player_SwitchWeaponLess;
+        public InputAction @Jump => m_Wrapper.m_player_Jump;
         public InputActionMap Get() { return m_Wrapper.m_player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -291,6 +313,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @SwitchWeaponLess.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchWeaponLess;
                 @SwitchWeaponLess.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchWeaponLess;
                 @SwitchWeaponLess.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSwitchWeaponLess;
+                @Jump.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @Jump.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
+                @Jump.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnJump;
             }
             m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
@@ -310,6 +335,9 @@ public class @PlayerControls : IInputActionCollection, IDisposable
                 @SwitchWeaponLess.started += instance.OnSwitchWeaponLess;
                 @SwitchWeaponLess.performed += instance.OnSwitchWeaponLess;
                 @SwitchWeaponLess.canceled += instance.OnSwitchWeaponLess;
+                @Jump.started += instance.OnJump;
+                @Jump.performed += instance.OnJump;
+                @Jump.canceled += instance.OnJump;
             }
         }
     }
@@ -321,5 +349,6 @@ public class @PlayerControls : IInputActionCollection, IDisposable
         void OnShoot(InputAction.CallbackContext context);
         void OnSwitchWeaponPlus(InputAction.CallbackContext context);
         void OnSwitchWeaponLess(InputAction.CallbackContext context);
+        void OnJump(InputAction.CallbackContext context);
     }
 }

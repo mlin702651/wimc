@@ -10,8 +10,9 @@ namespace Cinemachine.Examples
     public class CameraChange : MonoBehaviour
     {
         
-        public CinemachineVirtualCameraBase switchCam; //Camera
-        
+        public CinemachineVirtualCameraBase switchCam1; //Camera 湯匙走完
+        public CinemachineVirtualCameraBase switchCam2; //Camera 解謎切視角
+
         void Start()
         {
            
@@ -19,17 +20,42 @@ namespace Cinemachine.Examples
 
         void OnTriggerEnter(Collider col)
         {
-            if ( switchCam )
+            if (col.gameObject.tag == "guide")
             {
-                if (Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.Name != switchCam.Name)
-                {     
-                    switchCam.VirtualCameraGameObject.SetActive(false); //先禁用再启用，得到切换效果
-                    switchCam.VirtualCameraGameObject.SetActive(true);
+                if (switchCam1)
+                {
+                    if (Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.Name != switchCam1.Name)
+                    {
+                        switchCam1.VirtualCameraGameObject.SetActive(false); //先禁用再启用，得到切换效果
+                        switchCam1.VirtualCameraGameObject.SetActive(true);
+                    }
+                }
+            }
+            if (col.gameObject.tag == "pazzle")
+            {
+                if (switchCam2)
+                {
+                    if (Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.Name != switchCam2.Name)
+                    {
+                        switchCam2.VirtualCameraGameObject.SetActive(false); //先禁用再启用，得到切换效果
+                        switchCam2.VirtualCameraGameObject.SetActive(true);
+                    }
+                }
+            }
+        }
+        void OnTriggerExit(Collider col)
+        {
+            if (switchCam1)
+            {
+                if (Camera.main.GetComponent<CinemachineBrain>().ActiveVirtualCamera.Name != switchCam1.Name)
+                {
+                    switchCam1.VirtualCameraGameObject.SetActive(false); //先禁用再启用，得到切换效果
+                    switchCam1.VirtualCameraGameObject.SetActive(true);
                 }
             }
         }
 
-       
+
 
     }
 }

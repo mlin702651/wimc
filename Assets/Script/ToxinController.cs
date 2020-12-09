@@ -12,11 +12,11 @@ public class ToxinController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        //DoEmit，0.3秒鐘後開始，每0.3秒一次
+        //DoEmit，0秒鐘後開始，每0.3秒一次
         InvokeRepeating("DoEmit", 0f, 0.3f);
         collisionEvent = new List<ParticleCollisionEvent>();
 
-        Debug.Log("hi");
+       
 
     
     }
@@ -35,7 +35,7 @@ public class ToxinController : MonoBehaviour
         {
             Vector3 pos = collisionEvent[i].intersection;
             burstPS.transform.position = collisionEvent[i].intersection;
-            Debug.Log(pos);
+            
         }
         
         burstPS.Play();
