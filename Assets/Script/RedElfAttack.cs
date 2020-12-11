@@ -78,7 +78,7 @@ public class RedElfAttack : MonoBehaviour
             }
             if (count > 10000) count = 5000;
         }
-        Debug.Log(count);
+        //Debug.Log(count);
     }
     
 
