@@ -9,6 +9,10 @@ TagManager:
   - yellow
   - guide
   - pazzle
+  - ge_r
+  - ge_b
+  - ge_p
+  - ge_g
   layers:
   - Default
   - TransparentFX

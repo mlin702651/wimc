@@ -15,7 +15,7 @@ public class GunRotate : MonoBehaviour
     {
         if (PlayerMovement.getAngle.y > 0.5 || PlayerMovement.getAngle.y < -0.5)
         {
-            print("hi");
+            
             transform.Rotate(PlayerMovement.getAngle.y, 0, 0,Space.Self);
         }
     }

@@ -62,7 +62,7 @@ public class RedElfAttack : MonoBehaviour
             {
                 if (hit.collider.name == "player")
                 {
-                    print("hiiiiiiiii");
+                   
                     if (count > 3000)
                     {
                         //Debug.Log("HIT");                                          

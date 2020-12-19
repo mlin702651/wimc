@@ -32,6 +32,10 @@ public class PlayerMovement : MonoBehaviour
     Vector3 velocity;//速度
     public float gravity = -0.98f;
 
+    //血量
+    int hp = 5;
+
+    //有沒有在地板上
     public float margin = 0.1f;
     bool IsGrounded()
     {
@@ -153,9 +157,9 @@ public class PlayerMovement : MonoBehaviour
             toxinGun.SetActive(true);
             lightGun.SetActive(false);
             //調整角度
-            Debug.Log(currentEulerAngles.x);
+            //Debug.Log(currentEulerAngles.x);
             
-            Debug.Log("getAngle.y"+ getAngle.y);
+            //Debug.Log("getAngle.y"+ getAngle.y);
             if (currentEulerAngles.x < 60.1 && currentEulerAngles.x > -60.1)
             {
                 //currentEulerAngles += new Vector3(-getAngle.y, 0, 0) * Time.deltaTime * 30;
@@ -163,36 +167,7 @@ public class PlayerMovement : MonoBehaviour
                 toxinGun.transform.localEulerAngles = currentEulerAngles;
                 if (currentEulerAngles.x > 60) currentEulerAngles.x = 60;
                 else if(currentEulerAngles.x < -60) currentEulerAngles.x = -60;
-
-
             }
-            //if (currentEulerAngles.x < 60.3&& getAngle.y>0.5)
-            //{
-            //    //currentEulerAngles += new Vector3(-getAngle.y, 0, 0) * Time.deltaTime * 30;
-            //    currentEulerAngles += new Vector3(-1, 0, 0) * Time.deltaTime * 30;
-            //    toxinGun.transform.localEulerAngles = currentEulerAngles;
-
-            //}
-            //else if(currentEulerAngles.x > -60 && getAngle.y < -0.5)
-            //{
-            //    Debug.Log("hhh");
-            //    currentEulerAngles += new Vector3(1, 0, 0) * Time.deltaTime * 30;
-            //    toxinGun.transform.localEulerAngles = currentEulerAngles;
-            //}
-            //Debug.Log(currentEulerAngles);
-            //currentEulerAngles += new Vector3(-getAngle.y,0, 0) * Time.deltaTime*30 ;
-
-            //toxinGun.transform.localEulerAngles= currentEulerAngles;
-
-            //if (getAngle.y > 0.5 || getAngle.y < -0.5)
-            //{
-            //    print("hi");
-            //    toxinGun.transform.Rotate(-getAngle.y, 0, 0,Space.Self);
-            //}
-
-
-
-
 
         }
         else if (weaponNum == 3)
@@ -203,6 +178,15 @@ public class PlayerMovement : MonoBehaviour
             toxinGun.SetActive(false);
             lightGun.SetActive(true);
         }
+        //Debug.Log("hp"+hp);
+        //血量控制
+        if (AttackDetermination.elfHit == true)
+        {
+            hp--;
+            AttackDetermination.elfHit = false;
+        }
+
+
     }
 
     //碰到不同顏色的果醬換標籤
