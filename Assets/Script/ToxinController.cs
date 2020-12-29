@@ -12,6 +12,11 @@ public class ToxinController : MonoBehaviour
     public static int countB = 0;
     public static int countP = 0;
 
+    public static bool waitR = false;
+    public static bool waitG = false;
+    public static bool waitB = false;
+    public static bool waitP = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,23 +45,91 @@ public class ToxinController : MonoBehaviour
         
         burstPS.Play();
         //子彈碰到發電機+1
-        if (other.tag == "ge_r")
+        if (waitR == true)
         {
-            countR = (countR + 1) % 3;
+            if (other.tag == "ge_g")
+            {
+                countG = (countG + 1) % 3;
+            }
+            else if (other.tag == "ge_b")
+            {
+                countB = (countB + 1) % 3;
+            }
+            else if (other.tag == "ge_p")
+            {
+                countP = (countP + 1) % 3;
+            }
         }
-        else if (other.tag == "ge_g")
+        else if (waitB == true)
         {
-            countG = (countG + 1) % 3;
+            
+            if (other.tag == "ge_r")
+            {
+                countR = (countR + 1) % 3;
+            }
+            else if (other.tag == "ge_g")
+            {
+                countG = (countG + 1) % 3;
+            }
+            
+            else if (other.tag == "ge_p")
+            {
+                countP = (countP + 1) % 3;
+            }
         }
-        else if (other.tag == "ge_b")
+        else if (waitP == true)
         {
-            countB = (countB + 1) % 3;
+            if (other.tag == "ge_r")
+            {
+                countR = (countR + 1) % 3;
+            }
+            else if (other.tag == "ge_g")
+            {
+                countG = (countG + 1) % 3;
+            }
+            else if (other.tag == "ge_b")
+            {
+                countB = (countB + 1) % 3;
+            }
+          
         }
-        else if (other.tag == "ge_p")
+        else if (waitG == true)
         {
-            countP = (countP + 1) % 3;
+            if (other.tag == "ge_r")
+            {
+                countR = (countR + 1) % 3;
+            }
+            
+            else if (other.tag == "ge_b")
+            {
+                countB = (countB + 1) % 3;
+            }
+            else if (other.tag == "ge_p")
+            {
+                countP = (countP + 1) % 3;
+            }
         }
-        Debug.Log(countR);
+        else
+        {
+            Debug.Log("hit");
+            if (other.tag == "ge_r")
+            {
+                countR = (countR + 1) % 3;
+            }
+            else if (other.tag == "ge_g")
+            {
+                countG = (countG + 1) % 3;
+            }
+            else if (other.tag == "ge_b")
+            {
+                countB = (countB + 1) % 3;
+            }
+            else if (other.tag == "ge_p")
+            {
+                countP = (countP + 1) % 3;
+            }
+        }
+        
     }
     void DoEmit()
     {

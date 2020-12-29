@@ -12,6 +12,8 @@ public class FollowerMovement : MonoBehaviour
     public float speed = 2;
     public float rotSpeed = 0.6f;
     public Transform Player = null;
+    float height = -1.7f;
+    float countHeight=0;
 
     protected Animator avatar;
     private float SpeedDampTime = 0.005f;
@@ -38,8 +40,9 @@ public class FollowerMovement : MonoBehaviour
             //lightGun啟用的時候
             if(PlayerMovement.lightGunOn == true)
             {
+                countHeight = TargetObj.position.y - transform.position.y;
                 //距離跟按鈕壓下去
-                if (Vector3.Distance(TargetObj.position, transform.position) > mindistance && Vector3.Distance(TargetObj.position, transform.position) < maxdistance && PlayerMovement.pressDown == true && PlayerMovement.lightGunOn == true)
+                if (Vector3.Distance(TargetObj.position, transform.position) > mindistance && Vector3.Distance(TargetObj.position, transform.position) < maxdistance && countHeight > height && PlayerMovement.pressDown == true && PlayerMovement.lightGunOn == true)
                 {
                     Vector3 move = transform.forward;
                     controller.Move(move * speed * Time.deltaTime);

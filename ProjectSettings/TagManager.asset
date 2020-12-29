@@ -13,6 +13,7 @@ TagManager:
   - ge_b
   - ge_p
   - ge_g
+  - watchElf
   layers:
   - Default
   - TransparentFX
