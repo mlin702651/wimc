@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Clearence311 : MonoBehaviour
+public class Clear311 : MonoBehaviour
 {
-    public static bool clearence = false;
+    public static bool clear = false;
 
 
     // Start is called before the first frame update
@@ -22,7 +22,7 @@ public class Clearence311 : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            clearence = true;
+            clear = true;
             
         }
     }

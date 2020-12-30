@@ -16,7 +16,7 @@ public class DoorOpen : MonoBehaviour
     void Update()
     {
         float step = speed * Time.deltaTime;
-        if (Clearence311.clearence)
+        if (Clear311.clear)
         {
             
             

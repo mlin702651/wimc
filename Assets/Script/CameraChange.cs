@@ -14,8 +14,16 @@ namespace Cinemachine.Examples
         public CinemachineVirtualCameraBase switchCam2; //Camera 解謎切視角
         public CinemachineVirtualCameraBase switchCam3; //Camera 看藍色的小精靈
 
+        // Use this for initialization
+        public CinemachineVirtualCameraBase vcam;
+
+        // Use this for initialization
         void Start()
         {
+            if (vcam)
+            {
+                vcam.MoveToTopOfPrioritySubqueue();
+            }
            
         }
 
@@ -51,7 +59,7 @@ namespace Cinemachine.Examples
                     {
                         switchCam3.VirtualCameraGameObject.SetActive(false); //先禁用再启用，得到切换效果
                         switchCam3.VirtualCameraGameObject.SetActive(true);
-                        Debug.Log("cam3");
+                        
                     }
                 }
             }
